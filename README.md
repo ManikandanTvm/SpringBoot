@@ -31,7 +31,24 @@ https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/
 			<artifactId>spring-boot-starter-web</artifactId>
 </dependency>
 
-3. Run the Application
+3. Run the Application.Create a class with main method.
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class StartApp {
+	public static void main(String[] args) {
+		SpringApplication.run(StartApp.class, args);
+	}
+}
+
+SpringApplication.run does the following:
+ .Setsup the default configuration.
+ .Starts Spring application context.
+ .Performs classpath scan.
+ .starts Tomcat server.
+ 
 
 
 
