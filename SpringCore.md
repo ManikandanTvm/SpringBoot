@@ -13,7 +13,8 @@ AutoWiring Types
 3. constructor
 
 **XML Based Configuration:**
-```xml
+```xml 
+<!--Configuration-->
 <!--Defining a Bean-->
 <bean id="" class="">
 ```
@@ -36,6 +37,30 @@ AutoWiring Types
 
 
 **Java-based configuration:** Starting with Spring 3.0, many features provided by the Spring JavaConfig project became part of the core Spring Framework. Thus you can define beans external to your application classes by using Java rather than XML files. To use these new features, see the @Configuration, @Bean, @Import and @DependsOn annotations.
+
+**No ApplicationContext.xml**
+applicationContext replaced by @Configuration
+@Configuration at class level
+Spring Beans defined by @Bean
+@Bean at method level
+
+
+```java
+@Configuration
+public class AppConfig {
+    @Bean(name="customerService")
+    public CustomerService getCustomerService() {
+        CustomerServiceImpl customerService = new CustomerServiceImpl();
+        customerService.setCustomerRepository(getCustomerRepository());
+        return customerService;
+    }
+    @Bean(name = "customerRepository")
+    public CustomerRepository getCustomerRepository() { //Singleton
+        return new HibernateCustomerRepositoryImpl();
+    }
+}
+```
+
 
 ```xml
 <dependencies>
