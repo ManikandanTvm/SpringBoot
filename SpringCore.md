@@ -60,7 +60,56 @@ public class AppConfig {
     }
 }
 ```
+## Loading ApplicationContext
 
+```java
+ApplicationContext cntx = new AnnotationConfigAppicationContext(Appconfig.class);
+cntx.getBean("beanName", BeanName.class);
+```
+#Bean Scopes
+
+Singleton
+```java 
+@scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
+```
+Prototype
+##Web-Aware scopes
+Request
+session
+global
+
+# Loading Property file
+
+1. xml
+
+```xml
+<context:property-placeholder location="app.properties" />
+<bean id="id" class="customer">
+<property name="dbUName" value="${dbuname} />
+</bean>
+```
+
+2. Annotaion
+
+```java
+@value("${dbuname}")
+private String dbuname;
+```
+
+3. Java Config
+
+```java
+@PropertySource("app.properties")
+
+@Bean
+public static PropertySourcesPlaceHolderConfigurer getpropertySourcesPlaceHolderConfigurer(){
+    retutn new PropertySourcesPlaceHolderConfigurer();
+}
+
+@value("${dbuname}")
+private String dbuname;
+
+```
 
 ```xml
 <dependencies>
